@@ -1,0 +1,13 @@
+{
+  "name": "html5-boilerplate",
+  "authors": [
+    "Aswin Kalarickal <mail@aswink.in> (http://www.aswink.in)"
+  ],
+  "description": "HTML5 boilerplate which makes use of Bower, Grunt, Bootstrap and Sass.",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/aswinkalarickal/html5-boilerplate",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
