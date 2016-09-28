@@ -1,0 +1,1 @@
+/*! html5-boilerplate v1.0.1 | 2016-09-29 | Copyright 2016  */$(document).ready(function(e){console.log("Ready!")});

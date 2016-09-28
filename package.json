@@ -1,16 +1,27 @@
 {
   "name": "html5-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HTML5 boilerplate which makes use of Bower, Grunt, Bootstrap and Sass.",
-  "author": {
-    "name": "Aswin Kalarickal",
-    "email": "mail@aswink.in",
-    "url": "http://www.aswink.in"
+  "engines": {
+    "node": "4.5.0"
   },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "html5",
+    "boilerplate"
+  ],
+  "author": "Aswin Kalarickal <mail@aswink.in> (http://www.aswink.in)",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/aswinkalarickal/html5-boilerplate.git"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.1",
@@ -29,6 +40,8 @@
     "grunt-postcss": "^0.8.0",
     "grunt-usemin": "^3.1.1"
   },
-  "app": "app",
-  "dist": "dist"
+  "config": {
+    "src": "app",
+    "dest": "dist"
+  }
 }

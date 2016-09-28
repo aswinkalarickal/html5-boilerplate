@@ -13,7 +13,7 @@ module.exports = function(grunt) {
                 options: {
                     hostname: '0.0.0.0',
                     port: 4000,
-                    base: '<%= pkg.app %>',
+                    base: '<%= pkg.config.src %>',
                     livereload: true,
                     open: true
                 }
@@ -26,27 +26,27 @@ module.exports = function(grunt) {
             },
 
             sass: {
-                files: ['<%= pkg.app %>/sass/*.scss'],
+                files: ['<%= pkg.config.src %>/sass/*.scss'],
                 tasks: ['sass', 'postcss']
             },
 
             html: {
-                files: ['<%= pkg.app %>/**/*.html']
+                files: ['<%= pkg.config.src %>/**/*.html']
             },
 
             scripts: {
-                files: ['<%= pkg.app %>/scripts/*.js']
+                files: ['<%= pkg.config.src %>/scripts/*.js']
             },
 
             images: {
-                files: ['<%= pkg.app %>/**/*.{png,jpg,jpeg,gif,webp,svg}']
+                files: ['<%= pkg.config.src %>/**/*.{png,jpg,jpeg,gif,webp,svg}']
             }
         },
 
         sass: {
             dev: {
                 files: {
-                    '<%= pkg.app %>/styles/style.css' : '<%= pkg.app %>/sass/style.scss'
+                    '<%= pkg.config.src %>/styles/style.css' : '<%= pkg.config.src %>/sass/style.scss'
                 }
             }
         },
@@ -61,12 +61,12 @@ module.exports = function(grunt) {
                 ]
             },
             dev: {
-                src: '<%= pkg.app %>/styles/*.css'
+                src: '<%= pkg.config.src %>/styles/*.css'
             }
         },
 
         clean: {
-            build: ['<%= pkg.dist %>'],
+            build: ['<%= pkg.config.dest %>'],
             release: []
         },
 
@@ -75,30 +75,30 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= pkg.app %>',
+                        cwd: '<%= pkg.config.src %>',
                         src: [
                             '**/*.html',
                             'favicon.ico',
                             'robots.txt',
                             'sitemap.xml'
                         ],
-                        dest: '<%= pkg.dist %>'
+                        dest: '<%= pkg.config.dest %>'
                     }
                 ]
             }
         },
 
         useminPrepare: {
-            html: '<%= pkg.app %>/index.html',
+            html: '<%= pkg.config.src %>/index.html',
             options: {
-                dest: '<%= pkg.dist %>'
+                dest: '<%= pkg.config.dest %>'
             }
         },
 
         usemin: {
-            html: ['<%= pkg.dist %>/index.html'],
-            css: ['<%= pkg.dist %>/styles/*.css'],
-            js: ['<%= pkg.dist %>/scripts/*.js']
+            html: ['<%= pkg.config.dest %>/index.html'],
+            css: ['<%= pkg.config.dest %>/styles/*.css'],
+            js: ['<%= pkg.config.dest %>/scripts/*.js']
         },
 
         htmlmin: {
@@ -110,9 +110,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= pkg.dist %>',
+                    cwd: '<%= pkg.config.dest %>',
                     src: ['**/*.html'],
-                    dest: '<%= pkg.dist %>'
+                    dest: '<%= pkg.config.dest %>'
                 }]
             }
         },
@@ -121,9 +121,9 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= pkg.app %>',
+                    cwd: '<%= pkg.config.src %>',
                     src: ['**/*.{png,jpg,gif,svg}', '!bower_components/**'],
-                    dest: '<%= pkg.dist %>'
+                    dest: '<%= pkg.config.dest %>'
                 }]
             }
         },
@@ -150,9 +150,9 @@ module.exports = function(grunt) {
             source: {
                 files: [{
                     src: [
-                        '<%= pkg.dist %>/scripts/*.js',
-                        '<%= pkg.dist %>/styles/*.css',
-                        '<%= pkg.dist %>/images/*.{png,jpg,gif,svg}'
+                        '<%= pkg.config.dest %>/scripts/*.js',
+                        '<%= pkg.config.dest %>/styles/*.css',
+                        '<%= pkg.config.dest %>/images/*.{png,jpg,gif,svg}'
                     ]
                 }]
             }
@@ -179,6 +179,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean:build',
+        'sass',
+        'postcss',
         'copy',
         'useminPrepare',
         'imagemin',
