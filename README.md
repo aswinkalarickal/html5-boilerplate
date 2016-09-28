@@ -27,6 +27,11 @@ grunt build
 
 The distribution package will be built to `dist` folder.
 
+To start server in production run the following command:
+```bash
+npm start
+```
+
 ## License
 
 **The MIT License (MIT)**
